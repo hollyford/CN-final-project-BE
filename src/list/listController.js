@@ -58,3 +58,14 @@ exports.updateListItemCompletionState = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+exports.deleteList = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    await List.deleteOne({ _id: req.params.id });
+    res.status(200).send({ message: `Successfully deleted ${list.title}` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
