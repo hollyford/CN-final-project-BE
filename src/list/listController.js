@@ -34,3 +34,13 @@ exports.filterLists = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+exports.findSpecificList = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    res.status(200).send({ list });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
