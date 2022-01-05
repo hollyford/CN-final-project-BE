@@ -13,10 +13,12 @@ exports.addUser = async (req, res) => {
 
   exports.deleteUser = async (req, res) => {
       try {
-          await User.deleteOne({username: req.body.username})
-          res.status(200).send({ message: `Successfully deleted ${User.username}`});
+          const searchUser = await User.findOne({username: req.body.username});
+          await User.deleteOne(searchUser);
+          res.status(200).send({ message: `Successfully deleted ${searchUser.username}`});
       } catch (error) {
         console.log(error);
         res.status(500).send({ message: "Unsuccessful, please try again later" });
       }
   }
+
