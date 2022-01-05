@@ -24,8 +24,8 @@ exports.addUser = async (req, res) => {
 
   exports.listUsers = async (req, res) => {
     try {
-      const user = await User.find({});
-      res.status(200).send({ user });
+      const allUsers = await User.find({});
+      res.status(200).send({ allUsers });
     } catch (error) {
       console.log(error);
       res.status(500).send({ message: "Unsuccessful, please try again later" });
