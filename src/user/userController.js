@@ -22,3 +22,54 @@ exports.addUser = async (req, res) => {
       }
   }
 
+  exports.listUsers = async (req, res) => {
+    try {
+      const allUsers = await User.find({});
+      res.status(200).send({ allUsers });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
+    }
+  } 
+
+  exports.findUser = async (req, res) => {
+    try {
+      const user = await User.findById(req.body._id);
+      res.status(200).send({ user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
+    }
+  } 
+
+  exports.updateUser = async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate({_id: req.body._id}, (req.body),             
+      {upsert: true, new: true, runValidators: true});
+      res.status(200).send({ user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
+    }
+  } 
+  exports.updateEmail = async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate({_id: req.body._id}, (req.body),             
+      {upsert: true, new: true, runValidators: true});
+      res.status(200).send({ user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
+    }
+  } 
+
+  exports.updatePassword = async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate({_id: req.body._id}, (req.body),             
+      {upsert: true, new: true, runValidators: true});
+      res.status(200).send({ user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
+    }
+  } 
