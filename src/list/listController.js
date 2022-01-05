@@ -59,6 +59,16 @@ exports.updateListItemCompletionState = async (req, res) => {
   }
 }
 
+exports.updateList = async (req, res) => {
+  try {
+    await List.findByIdAndUpdate(req.params.id, req.body);
+    const list = await List.findById(req.params.id);
+    res.status(200).send({ message: `Successfully updated ${list.title}`, list });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 exports.deleteList = async (req, res) => {
   try {
     const list = await List.findById(req.params.id);
