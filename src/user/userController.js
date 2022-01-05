@@ -28,7 +28,7 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (List users)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   } 
 
@@ -38,7 +38,7 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (Find user)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   } 
 
@@ -49,7 +49,7 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (Update user)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   } 
   exports.updateEmail = async (req, res) => {
@@ -59,7 +59,7 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (Update user)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   } 
 
@@ -70,6 +70,6 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (Update user)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   } 
