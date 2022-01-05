@@ -66,6 +66,24 @@ exports.updateList = async (req, res) => {
     res.status(200).send({ message: `Successfully updated ${list.title}`, list });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
+
+exports.deleteListItem = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    const itemToDelete = list.listItems.find(element => element.itemName == req.body.itemName);
+    const itemIndex = list.listItems.indexOf(itemToDelete);
+    if (itemIndex > -1) {
+      list.listItems.splice(itemIndex, 1);
+    }
+    list.markModified('listItems');
+    await list.save();
+    res.status(200).send({ message: `${itemToDelete.itemName} has been removed`, list });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
 
