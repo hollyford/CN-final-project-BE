@@ -34,3 +34,38 @@ exports.filterLists = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+exports.findSpecificList = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    res.status(200).send({ list });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
+
+exports.updateListItemCompletionState = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    const found = list.listItems.find(element => element.itemName == req.body.itemName);
+    found.completed = req.body.completed;
+    list.markModified('listItems');
+    await list.save();
+    res.status(200).send({ message: `List ${list.title} has been updated`, list });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
+
+exports.deleteList = async (req, res) => {
+  try {
+    const list = await List.findById(req.params.id);
+    await List.deleteOne({ _id: req.params.id });
+    res.status(200).send({ message: `Successfully deleted ${list.title}` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
