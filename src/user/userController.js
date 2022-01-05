@@ -7,7 +7,7 @@ exports.addUser = async (req, res) => {
       res.status(200).send({ message: `Successfully added ${newUser.username}`, newUser });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "Unsuccessful, please try again later (Add user)" });
+      res.status(500).send({ message: "Unsuccessful, please try again later" });
     }
   }
 
@@ -18,7 +18,7 @@ exports.addUser = async (req, res) => {
           res.status(200).send({ message: `Successfully deleted ${searchUser.username}`});
       } catch (error) {
         console.log(error);
-        res.status(500).send({ message: "Unsuccessful, please try again later (Delete user)" });
+        res.status(500).send({ message: "Unsuccessful, please try again later" });
       }
   }
 
