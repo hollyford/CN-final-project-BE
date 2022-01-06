@@ -11,17 +11,6 @@ exports.addUser = async (req, res) => {
   }
 }
 
-exports.deleteUser = async (req, res) => {
-  try {
-    const searchUser = await User.findById(req.params.id);
-    await User.deleteOne(searchUser);
-    res.status(200).send({ message: `Successfully deleted ${searchUser.username}` });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Unsuccessful, please try again later" });
-  }
-}
-
 exports.listUsers = async (req, res) => {
   try {
     const allUsers = await User.find({});
@@ -72,4 +61,15 @@ exports.updatePassword = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
-} 
+}
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const searchUser = await User.findById(req.params.id);
+    await User.deleteOne(searchUser);
+    res.status(200).send({ message: `Successfully deleted ${searchUser.username}` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
