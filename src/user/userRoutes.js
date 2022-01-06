@@ -5,11 +5,11 @@ const userRouter = Router();
 
 userRouter.post("/user", checkEmail, hashPassword, addUser);
 userRouter.post("/login", checkPassword);
-userRouter.get("/user", findUser);
+userRouter.get("/users/:id", findUser);
 userRouter.get("/users", listUsers);
-userRouter.put("/user", updateUser);
-userRouter.put("/userEmail", checkEmail, updateEmail);
-userRouter.put("/userPassword", hashPassword, updatePassword);
-userRouter.delete("/user", deleteUser);
+userRouter.put("/users/:id", updateUser);
+userRouter.put("/userEmail/:id", checkEmail, updateEmail);
+userRouter.put("/userPassword/:id", hashPassword, updatePassword);
+userRouter.delete("/users/:id", deleteUser);
 
 module.exports = userRouter;
