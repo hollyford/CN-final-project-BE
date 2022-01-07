@@ -73,3 +73,19 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+exports.addToLists = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const itemToAdd = req.body;
+    if (itemToAdd != undefined) {
+      user.lists.push(itemToAdd);
+    }
+    user.markModified('lists');
+    await user.save();
+    res.status(200).send({ user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
