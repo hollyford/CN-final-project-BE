@@ -7,7 +7,7 @@ userRouter.post("/user", checkEmail, hashPassword, addUser);
 userRouter.post("/login", checkPassword);
 userRouter.get("/users/:id", findUser);
 userRouter.get("/users", listUsers);
-userRouter.patch("/users/:id", addToLists);
+userRouter.patch("/users/:id/lists", addToLists);
 userRouter.put("/users/:id", updateUser);
 userRouter.put("/userEmail/:id", checkEmail, updateEmail);
 userRouter.put("/userPassword/:id", hashPassword, updatePassword);
