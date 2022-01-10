@@ -118,3 +118,23 @@ exports.updateList = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+// need to test the below 
+
+exports.deleteList = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const itemToDelete = user.lists.find(element => element._id == req.body.listId);
+    console.log(itemToDelete);
+    const itemIndex = user.lists.indexOf(itemToDelete);
+    if (itemIndex > -1) {
+      user.lists.splice(itemIndex, 1);
+    }
+    user.markModified('lists');
+    await user.save();
+    res.status(200).send({ message: `Successfully deleted ${itemToDelete.title}` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
