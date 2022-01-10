@@ -47,19 +47,6 @@ exports.findSpecificList = async (req, res) => {
 
 //might move over to USER
 
-exports.updateList = async (req, res) => {
-  try {
-    await List.findByIdAndUpdate(req.params.id, req.body);
-    const list = await List.findById(req.params.id);
-    res.status(200).send({ message: `Successfully updated ${list.title}`, list });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Unsuccessful, please try again later" });
-  }
-}
-
-//might move over to USER
-
 exports.deleteListItem = async (req, res) => {
   try {
     const list = await List.findById(req.params.id);
