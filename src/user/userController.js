@@ -89,3 +89,18 @@ exports.addToLists = async (req, res) => {
     res.status(500).send({ message: "Unsuccessful, please try again later" });
   }
 }
+
+exports.updateListItemCompletionState = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const listToUpdate = user.lists.find(element => element._id == req.params.listId);
+    const listItemToUpdate = listToUpdate.listItems.find(element => element.itemName == req.body.itemName);
+    listItemToUpdate.completed = req.body.completed;
+    user.markModified('lists');
+    await user.save();
+    res.status(200).send({ message: `List ${listToUpdate.title} has been updated`, user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessful, please try again later" });
+  }
+}
