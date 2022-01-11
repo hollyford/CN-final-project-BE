@@ -119,13 +119,10 @@ exports.updateList = async (req, res) => {
   }
 }
 
-// need to test the below 
-
 exports.deleteList = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
-    const itemToDelete = user.lists.find(element => element._id == req.body.listId);
-    console.log(itemToDelete);
+    const itemToDelete = user.lists.find(element => element._id == req.params.listId);
     const itemIndex = user.lists.indexOf(itemToDelete);
     if (itemIndex > -1) {
       user.lists.splice(itemIndex, 1);
