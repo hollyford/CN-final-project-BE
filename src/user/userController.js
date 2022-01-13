@@ -124,12 +124,13 @@ exports.deleteList = async (req, res) => {
     const user = await User.findById(req.params.userId);
     const itemToDelete = user.lists.find(element => element._id == req.params.listId);
     const itemIndex = user.lists.indexOf(itemToDelete);
+    const title = itemToDelete.title;
     if (itemIndex > -1) {
       user.lists.splice(itemIndex, 1);
     }
     user.markModified('lists');
     await user.save();
-    res.status(200).send({ message: `Successfully deleted ${itemToDelete.title}` });
+    res.status(200).send({ message: `"${title}" deleted successfully` });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Unsuccessful, please try again later" });
