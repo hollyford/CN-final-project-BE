@@ -9,6 +9,7 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  listImage: String,
   keywords: [String],
   access: String,
   status: String,
